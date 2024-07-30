@@ -11,7 +11,7 @@ substitutions:
   cover_open_duration: 25s
   cover_close_duration: 25s
 
-  cover_status_light_duration: 2.4s  # If value bigger then 0 it will turn off status after this period
+  cover_status_light_duration: 2400  # If value bigger then 0 it will turn off status after this period, must be set in milliseconds because its used in a lambda
 
   vibra_mode: "day"     # Possible values are on, off, day and night
   vibra_time: 150ms
@@ -140,7 +140,7 @@ esphome:
           condition:
             lambda: "return (${cover_status_light_duration} > 0);"
           then:
-            - delay: ${cover_status_light_duration} 
+            - delay: !lambda "return ${cover_status_light_duration};"
             - light.turn_off:
                 id: leds_right
           
@@ -700,7 +700,7 @@ cover:
           condition:
             lambda: "return (${cover_status_light_duration} > 0);"
           then:
-            - delay: ${cover_status_light_duration}
+            - delay: !lambda "return ${cover_status_light_duration};"
             - light.turn_off:
                 id: leds_right
 
