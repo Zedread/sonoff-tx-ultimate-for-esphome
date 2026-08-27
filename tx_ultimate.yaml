@@ -558,7 +558,6 @@ i2s_audio:
 speaker:
   - platform: i2s_audio
     id: media_out
-    name: ${friendly_name} Player
     dac_type: external
     i2s_dout_pin: ${audio_sdata_pin}
     i2s_audio_id: audio_i2s
